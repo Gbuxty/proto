@@ -1,0 +1,34 @@
+syntax="proto3";
+
+package test;
+
+option go_package="protobuf/gen/go/userService";
+
+service UserService{
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc IsAdmin(IsAdminRequest)returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+    string email=1;
+    string password=2;
+}
+
+message RegisterResponse{
+    int64 userId=1;
+}
+message LoginRequest{
+    string email=1;
+    string login=2;
+    int32 appId=3;//айди что бы логинится в разных сервисах
+}
+message LoginResponse{
+    string token=1;//jwt token
+}
+message IsAdminRequest{
+    int64 userId=1;//id пользователя которого хотим проверить
+}
+message IsAdminResponse{
+    bool isAdmin=1;// возращает да или нет 
+}
