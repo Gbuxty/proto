@@ -1,4 +1,4 @@
-module protobuf
+module github.com/Gbuxty/proto
 
 go 1.22.2
 
