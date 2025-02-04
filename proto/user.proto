@@ -2,7 +2,7 @@ syntax="proto3";
 
 package test;
 
-option go_package="protobuf/gen/go/userService";
+option go_package="/;usrv1";
 
 service AuthService{
     rpc Register(RegisterRequest) returns (RegisterResponse);
