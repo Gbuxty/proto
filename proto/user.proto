@@ -4,10 +4,11 @@ package test;
 
 option go_package="protobuf/gen/go/userService";
 
-service UserService{
+service AuthService{
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
-    rpc IsAdmin(IsAdminRequest)returns (IsAdminResponse);
+    rpc Logout(LogoutRequest)returns(LogoutResponse);
+    
 }
 
 message RegisterRequest {
@@ -24,11 +25,14 @@ message LoginRequest{
     int32 appId=3;//айди что бы логинится в разных сервисах
 }
 message LoginResponse{
-    string token=1;//jwt token
+    bool success=1;
+    string message=2;
+    string token=3;//jwt token
 }
-message IsAdminRequest{
-    int64 userId=1;//id пользователя которого хотим проверить
+message LogoutRequest{
+    string token=1;//delete jwt
 }
-message IsAdminResponse{
-    bool isAdmin=1;// возращает да или нет 
+message LogoutResponse{
+    bool success=1;
+    string message=2;
 }
