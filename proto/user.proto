@@ -7,10 +7,18 @@ option go_package="/;usrv1";
 service AuthService{
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
+    rpc IsAdmin(IsAdminRequest) returns(IsAdminResponse);
     rpc Logout(LogoutRequest)returns(LogoutResponse);
     
 }
 
+message IsAdminRequest{
+    int64 user_id=1;
+}
+
+message IsAdminResponse{
+    bool is_admin=1;
+}
 message RegisterRequest {
     string email=1;
     string password=2;
@@ -21,18 +29,17 @@ message RegisterResponse{
 }
 message LoginRequest{
     string email=1;
-    string login=2;
+    string password=2;
     int32 appId=3;//айди что бы логинится в разных сервисах
 }
 message LoginResponse{
-    bool success=1;
-    string message=2;
-    string token=3;//jwt token
+    
+    string token=1;//jwt token
 }
 message LogoutRequest{
     string token=1;//delete jwt
 }
 message LogoutResponse{
     bool success=1;
-    string message=2;
+    
 }
